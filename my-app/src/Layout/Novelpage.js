@@ -47,13 +47,9 @@ const Novelpage=()=>{
                     />
         ))}
         
-        
-
     <NovelCpt 
         chapters={chapterdata}
     />
-
-
 
     </div>
     )

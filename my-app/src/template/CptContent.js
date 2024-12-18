@@ -1,9 +1,9 @@
 import React from "react";
 
-const CptContent=()=>{
+const CptContent=({cpt_text})=>{
     return(
         <div id="chapter-container" className="chapter-content font_default" >
-            Chapter content goes here.
+           {cpt_text}
         </div>
     )
 }

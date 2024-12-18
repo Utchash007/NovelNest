@@ -8,6 +8,7 @@ import "./styles.css";
 import Novelpage from "./Layout/Novelpage";
 import ChapterLayout from "./Layout/ChapterLayout";
 import EditProfileLayout from "./Layout/EditProfileLayout";
+import SearchResultLayout from "./Layout/SearchResultLayout";
 
 const App = () => {
   return (
@@ -18,8 +19,9 @@ const App = () => {
           <Route path="/" element={<Homepage />} />
           {/* Add the :id parameter here for Novelpage */}
           <Route path="/Novelpage/:id" element={<Novelpage />} />
-          <Route path="/ChapterLayout" element={<ChapterLayout />} />
+          <Route path="/ChapterLayout/:novel_id/:cpt_no" element={<ChapterLayout />} />
           <Route path="/EditProfileLayout" element={<EditProfileLayout />} />
+          <Route path="/SearchResultLayout/:searchQuery" element={<SearchResultLayout />} />
         </Routes>
       </Router>
     </div>

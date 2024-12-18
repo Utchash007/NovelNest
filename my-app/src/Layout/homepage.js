@@ -11,24 +11,37 @@ const Homepage=()=>{
 const [actionNovels,setActionNovels]=useState([])
 const [adventureNovels,setadventureNovels]=useState([])
 const [sliceoflifeNovels,setsliceoflifeNovels]=useState([])
+const [loading, setLoading] = useState(true);
 
 useEffect(()=>{
     Promise.all([
-
       axios.get("http://127.0.0.1:8000/api/novels/novel_action/"),
       axios.get("http://127.0.0.1:8000/api/novels/novel_slice_of_life/"),
-
+      
     ])
 
     .then(([actionResponse,sliceoflifeResponse])=>{
         setActionNovels(actionResponse.data);
         setsliceoflifeNovels(sliceoflifeResponse.data);
+        setLoading(false);
     })
     .catch((error)=>{
       alert(error.message);
+      setLoading(false);
     })
 
 },[])
+
+
+if (loading) {
+  return (
+    <div class="spinner-box">
+      <div class="circle-border">
+        <div class="circle-core"></div>
+      </div>  
+    </div>
+    );  
+}
 
 
 
@@ -44,6 +57,7 @@ useEffect(()=>{
               {actionNovels.map((novel) => (
                   <Card 
                   key={novel.novel_id}
+                  id={novel.novel_id}
                   image={novel.novel_img_link}
                   title={novel.novel_name}
                   description={novel.intro}
@@ -62,6 +76,7 @@ useEffect(()=>{
                 {sliceoflifeNovels.map((novel) => (
                   <Card 
                   key={novel.novel_id}
+                  id={novel.novel_id}
                   image={novel.novel_img_link}
                   title={novel.novel_name}
                   description={novel.intro}

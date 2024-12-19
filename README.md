@@ -24,7 +24,7 @@ This is a full-stack web application with a React frontend and Django backend. T
 
 2. Navigate to the frontend directory:
    ```bash
-   cd ../frontend
+   cd ../my-app
    ```
 
 3. Install dependencies:

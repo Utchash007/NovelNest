@@ -1,4 +1,4 @@
-# React-Django Application
+# NovelNest a React-Django Application
 
 This is a full-stack web application with a React frontend and Django backend. The Django backend provides REST APIs using Django REST Framework, and the React frontend communicates with the backend via Axios.
 

@@ -25,9 +25,10 @@ const SearchResultLayout=()=>{
    },[searchQuery]);
     return(
         <div>
+            <div className="searchresult">
             <div className="field">
                 <div className="heading">
-                <h1><a href="#">Search Results</a></h1>
+                <h1><a href="#">Search Results for <i>{searchQuery}</i></a></h1>
                 </div>
                 <div className="container">
                 <div className="card__container">
@@ -44,7 +45,7 @@ const SearchResultLayout=()=>{
                 </div>
             </div>
         </div>
-                
+        </div>
 
         </div>
     )

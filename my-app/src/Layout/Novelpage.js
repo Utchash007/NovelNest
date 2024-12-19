@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState,useRef} from "react";
 import NovelDescription from '../template/NovelDescription';
 import NovelCpt from '../template/NovelCpt';
 import axios from "axios";
@@ -6,11 +6,13 @@ import { useParams } from "react-router-dom";  // Make sure this is correct
 
 
 const Novelpage=()=>{
-
+    const isFetchedRef=useRef(false)
     const {id}=useParams();
     const [chapterdata, setChapterData] = useState([])
     const [noveldata, setNovelData] = useState([])
    useEffect(()=>{
+        if(isFetchedRef.current)return;
+        isFetchedRef.current=true;
         const url1="http://127.0.0.1:8000/api/novel-info/chapters?novel_id="+id;
         const url2="http://127.0.0.1:8000/api/novels/novel/?novel_id="+id;
         

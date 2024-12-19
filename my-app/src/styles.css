@@ -86,6 +86,7 @@ header {
     border: 2px solid black;
     transition: box-shadow 0.2s ease-in, background-color 0.2s ease-in,
       border 0.3s;
+      
   }
   
   .profile-dropdown-btn:hover {
@@ -152,6 +153,12 @@ header {
     font-size: 0.9rem;
     font-weight: 500;
     color:rgb(248, 248, 248);
+
+    backdrop-filter: blur(3px) saturate(167%);
+    -webkit-backdrop-filter: blur(3px) saturate(167%);
+    background-color: rgba(63, 63, 63, 0.43);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
   }
   
   .profile-dropdown-list-item a i {
@@ -480,7 +487,7 @@ header {
 }
 
 .heading a {
-    color: #000000; /* Adjust color */
+    color: #ffffff; /* Adjust color */
     text-decoration: none;
 }
 
@@ -489,7 +496,7 @@ header {
 }
 
 .field {
-  
+    margin-top: 20px;
     margin-left: 1rem;
     margin-right: 1rem;
     margin-bottom: 1rem; /* Adjust as needed */
@@ -497,6 +504,29 @@ header {
     border-radius: 10px; /* Adjust border radius */
     padding: 1rem; /* Adjust padding */
     
+    backdrop-filter: blur(11px) saturate(148%);
+    -webkit-backdrop-filter: blur(11px) saturate(148%);
+    background-color: rgba(97, 129, 169, 0.43);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+
+
+}
+
+.searchresult .field{
+  margin-top: 20px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem; /* Adjust as needed */
+    border: 2px solid #f7f3f300; /* Set border color */
+    border-radius: 10px; /* Adjust border radius */
+    padding: 1rem; /* Adjust padding */
+  
+    backdrop-filter: blur(9px) saturate(118%);
+    -webkit-backdrop-filter: blur(9px) saturate(118%);
+    background-color: rgba(48, 63, 80, 0.15);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
 }
 /**rules for novelpage********************************/
 .novel_container {

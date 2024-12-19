@@ -8,21 +8,30 @@ const Homepage=()=>{
         { image: "./Assets/img2.jpg", title: "Your Name", description: "Adventure, Slice of Life", genres: ["#adventure", "#slice of life"] },
         { image: "https://i.postimg.cc/76yy4KmD/img5.png", title: "Path Of Peace", description: "Slice of Life", genres: ["#slice of life"] },
       ];
-const [actionNovels,setActionNovels]=useState([])
-const [adventureNovels,setadventureNovels]=useState([])
-const [sliceoflifeNovels,setsliceoflifeNovels]=useState([])
+const [actionNovels,setActionNovels]=useState([]);
+const [adventureNovels,setadventureNovels]=useState([]);
+const [sliceoflifeNovels,setsliceoflifeNovels]=useState([]);
+const[isekaiNovels,setIsekaifeNovels]=useState([]);
+const[fantasyNovels,setFantasyNovels]=useState([]);
 const [loading, setLoading] = useState(true);
 
 useEffect(()=>{
     Promise.all([
       axios.get("http://127.0.0.1:8000/api/novels/novel_action/"),
       axios.get("http://127.0.0.1:8000/api/novels/novel_slice_of_life/"),
-      
+      axios.get("http://127.0.0.1:8000/api/novels/novel_adventure/"),
+      axios.get("http://127.0.0.1:8000/api/novels/novel_isekai/"),
+      axios.get("http://127.0.0.1:8000/api/novels/novel_fantasy/")
     ])
 
-    .then(([actionResponse,sliceoflifeResponse])=>{
+    .then(([actionResponse,sliceoflifeResponse,
+      adventureResponse, isekaiResponse, fantasyResponse
+    ])=>{
         setActionNovels(actionResponse.data);
         setsliceoflifeNovels(sliceoflifeResponse.data);
+        setadventureNovels(adventureResponse.data);
+        setIsekaifeNovels(isekaiResponse.data);
+        setFantasyNovels(fantasyResponse.data);
         setLoading(false);
     })
     .catch((error)=>{
@@ -86,6 +95,67 @@ if (loading) {
               </div>
             </div>
           </div>
+
+          <div className="field">
+            <div className="heading">
+              <h1><a href="#">Adventure</a></h1>
+            </div>
+            <div className="container">
+              <div className="card__container">
+                {adventureNovels.map((novel) => (
+                  <Card 
+                  key={novel.novel_id}
+                  id={novel.novel_id}
+                  image={novel.novel_img_link}
+                  title={novel.novel_name}
+                  description={novel.intro}
+                  genres={[novel.action ? "#action":"", novel.adventure? "adventure": "",novel.isekai ? "#isekai" : "", novel.fantasy ? "#fantasy" : "", novel.slice_of_life ? "#slice_of_life" : ""].filter(Boolean)} 
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+          
+          <div className="field">
+            <div className="heading">
+              <h1><a href="#">Isekai</a></h1>
+            </div>
+            <div className="container">
+              <div className="card__container">
+                {isekaiNovels.map((novel) => (
+                  <Card 
+                  key={novel.novel_id}
+                  id={novel.novel_id}
+                  image={novel.novel_img_link}
+                  title={novel.novel_name}
+                  description={novel.intro}
+                  genres={[novel.action ? "#action":"", novel.adventure? "adventure": "",novel.isekai ? "#isekai" : "", novel.fantasy ? "#fantasy" : "", novel.slice_of_life ? "#slice_of_life" : ""].filter(Boolean)} 
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="field">
+            <div className="heading">
+              <h1><a href="#">Fantasy</a></h1>
+            </div>
+            <div className="container">
+              <div className="card__container">
+                {fantasyNovels.map((novel) => (
+                  <Card 
+                  key={novel.novel_id}
+                  id={novel.novel_id}
+                  image={novel.novel_img_link}
+                  title={novel.novel_name}
+                  description={novel.intro}
+                  genres={[novel.action ? "#action":"", novel.adventure? "adventure": "",novel.isekai ? "#isekai" : "", novel.fantasy ? "#fantasy" : "", novel.slice_of_life ? "#slice_of_life" : ""].filter(Boolean)} 
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
         </div>
       );
 }

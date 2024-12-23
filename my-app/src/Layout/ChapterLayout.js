@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import CptIntro from '../template/CptIntro';
 import CptContent from '../template/CptContent';
-import { useParams, useNavigate } from 'react-router-dom';
+import {  useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
 
 const ChapterLayout = () => {
@@ -77,7 +77,7 @@ const ChapterLayout = () => {
                             key={data.descript_id}
                             chapter_title={data.chapter_title}
                             novel_id={data.novel_id}
-                            novelName={noveldata[0]?.novel_name} // Use optional chaining
+                            novelName={noveldata[0]?.novel_name} 
                         />
                     ))}
 

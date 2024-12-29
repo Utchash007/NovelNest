@@ -15,6 +15,7 @@ const LoginSignup = ({ onLoginSuccess }) => {
   };
 
   const handleLoginSubmit =async (event) => {
+    
     event.preventDefault();
 
     try{
@@ -26,21 +27,21 @@ const LoginSignup = ({ onLoginSuccess }) => {
     );
 
     if(response.status===200){
-        console.log("login successful");
+        localStorage.setItem("username", email);
         localStorage.setItem("active", JSON.stringify(response.data));
         onLoginSuccess();
     }else{
         console.error("Invalid credentials");
     }
-
     }catch(error){
         console.error("Error logging in", error);
     }
-
-
   };
 
+ 
+  
   return (
+    
     <div>
         <div className="loginWrap">
       <div className="img">

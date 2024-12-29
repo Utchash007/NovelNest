@@ -7,8 +7,14 @@ const SearchResultLayout=()=>{
     const [searchNovels, setSearchNovel]=useState([]);
     const {searchQuery}=useParams();
     useEffect(()=>{
-        const url1="http://127.0.0.1:8000/api/novels/search/?novel_name="+searchQuery;
-        console.log(url1);
+
+        var url1="";
+        
+        if(!searchQuery || searchQuery.trim()===""){
+            url1="http://127.0.0.1:8000/api/novels/"
+        }
+       else {url1="http://127.0.0.1:8000/api/novels/search/?novel_name="+searchQuery;}
+        console.log(searchQuery);
        Promise.all( 
         [
             axios.get(url1)

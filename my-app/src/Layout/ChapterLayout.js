@@ -3,23 +3,28 @@ import CptIntro from '../template/CptIntro';
 import CptContent from '../template/CptContent';
 import {  useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
+import { decode } from "../decodeJWT";
+import { create_read } from "../Generic_API/Create_Read_history";
 
 const ChapterLayout = () => {
     const isFetchedRef = useRef(false);
+    const user_id=(decode(localStorage.getItem("active"))).user_id;
     const { novel_id, cpt_no } = useParams();
     const navigate = useNavigate();
     const [chapterdata, setChapterData] = useState([]);
     const [noveldata, setNovelData] = useState([]);
     const [updatedata, setUpdateData] = useState([]);
     const [isUnauthorized, setIsUnauthorized] = useState(false); // Track redirection
+    const currentISOTime = new Date().toISOString();
+    
+    
 
     useEffect(() => {
         const storedData = localStorage.getItem("active");
         if (!storedData) {
-            setIsUnauthorized(true); // Trigger redirection
+            setIsUnauthorized(true); 
             return;
         }
-
         const parsedToken = JSON.parse(storedData);
         const token = parsedToken?.access;
         if (!token) {
@@ -36,7 +41,7 @@ const ChapterLayout = () => {
 
         if (isFetchedRef.current) return;
         isFetchedRef.current = true;
-
+        create_read(currentISOTime ,user_id,novel_id,cpt_no);
         const url1 = `http://127.0.0.1:8000/api/chapter/contents/?novel_id=${novel_id}&cpt_no=${cpt_no}`;
         const url2 = `http://127.0.0.1:8000/api/novels/novel/?novel_id=${novel_id}`;
         const url3 = `http://127.0.0.1:8000/api/update_novel/read_count_update/?novel_id=${novel_id}`;
@@ -63,7 +68,7 @@ const ChapterLayout = () => {
 
     // Redirect if unauthorized
     if (isUnauthorized) {
-        navigate('/LoginSignup', { replace: true });
+        
         return null; // Stop rendering
     }
 
@@ -88,6 +93,7 @@ const ChapterLayout = () => {
                         />
                     ))}
                 </article>
+                <button onClick={() => navigate(`/Novelpage/${novel_id}`)} className="buttonBack">Back</button> 
             </div>
         </div>
     );

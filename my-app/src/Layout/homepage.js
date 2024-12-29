@@ -3,6 +3,8 @@ import Card from "../template/card";
 import Slider from "../template/Slider";
 import axios from "axios";
 const Homepage=()=>{
+
+  
     const novels = [
         { image: "./Assets/img1.jpeg", title: "Jujutsu Kaisen 0", description: "Action, Slice of Life", genres: ["#action", "#slice of life"] },
         { image: "./Assets/img2.jpg", title: "Your Name", description: "Adventure, Slice of Life", genres: ["#adventure", "#slice of life"] },
@@ -70,7 +72,7 @@ if (loading) {
                   image={novel.novel_img_link}
                   title={novel.novel_name}
                   description={novel.intro}
-                  genres={[novel.action ? "#action":"", novel.adventure? "adventure": "",novel.isekai ? "#isekai" : "", novel.fantasy ? "#fantasy" : "", novel.slice_of_life ? "#slice_of_life" : ""].filter(Boolean)} 
+                  genres={[novel.action ? "#action":"", novel.adventure? "#adventure": "",novel.isekai ? "#isekai" : "", novel.fantasy ? "#fantasy" : "", novel.slice_of_life ? "#slice_of_life" : ""].filter(Boolean)} 
                   />
                 ))}
               </div>

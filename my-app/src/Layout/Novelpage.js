@@ -2,11 +2,12 @@ import React, { useEffect, useState,useRef} from "react";
 import NovelDescription from '../template/NovelDescription';
 import NovelCpt from '../template/NovelCpt';
 import axios from "axios";
-import { useParams } from "react-router-dom";  // Make sure this is correct
+import { useParams,useNavigate } from "react-router-dom";  // Make sure this is correct
 
 
 const Novelpage=()=>{
     const isFetchedRef=useRef(false)
+    const navigate = useNavigate();
     const {id}=useParams();
     const [chapterdata, setChapterData] = useState([])
     const [noveldata, setNovelData] = useState([])
@@ -26,8 +27,7 @@ const Novelpage=()=>{
             setNovelData(novelDataResponse.data);
         })
         .catch((error)=>{
-            console.log(chapterdata);
-            console.log(id);
+            
             console.log(error.message);
           })
 
@@ -35,7 +35,7 @@ const Novelpage=()=>{
 
 
     return(
-        console.log(noveldata),
+        
     <div>
         {noveldata.map((novel)=>(
                     <NovelDescription 
@@ -52,7 +52,7 @@ const Novelpage=()=>{
     <NovelCpt 
         chapters={chapterdata}
     />
-
+    <button onClick={() => navigate(`/`)} className="buttonBack">Back</button>
     </div>
     )
 }

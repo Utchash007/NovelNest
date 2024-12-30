@@ -81,16 +81,18 @@ header {
     width: 150px;
     border-radius: 25px; /* Adjust the value to create an oval shape */
     overflow: hidden; /* Hide overflow to maintain oval shape */
-    background-color:#762ef3;/* Set background color */
+    background-color:#762ef3 #1f064a;/* Set background color */
     cursor: pointer;
     border: 2px solid black;
     transition: box-shadow 0.2s ease-in, background-color 0.2s ease-in,
       border 0.3s;
+
       
+
   }
   
   .profile-dropdown-btn:hover {
-    background-color:var(--secondary-light-2);
+    background-color:#caabff;;
     box-shadow: var(--shadow);
   }
   
@@ -126,18 +128,16 @@ header {
     background-color: var(--white);
     border-radius: 10px;
     max-height: 0;
+    opacity: 0;
     overflow: hidden;
     box-shadow: var(--shadow);
-    transition: opacity 0.3s ease, height 0.3s ease;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
     z-index: 9999;
-  }
-  
-  .profile-dropdown-list hr {
-    border: 0.5px solid var(--green);
   }
   
   .profile-dropdown-list.active {
     max-height: 500px;
+    opacity: 1;
   }
   
   .profile-dropdown-list-item {
@@ -152,8 +152,7 @@ header {
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 500;
-    color:rgb(248, 248, 248);
-
+    color: rgb(248, 248, 248);
     backdrop-filter: blur(3px) saturate(167%);
     -webkit-backdrop-filter: blur(3px) saturate(167%);
     background-color: rgba(63, 63, 63, 0.43);
@@ -162,12 +161,11 @@ header {
   }
   
   .profile-dropdown-list-item a i {
-    
     margin-right: 0.8rem;
     font-size: 1.1rem;
     width: 2.3rem;
     height: 2.3rem;
-    background-color:rgb(27, 26, 26) ;
+    background-color: rgb(27, 26, 26);
     line-height: 2.3rem;
     text-align: center;
     margin-right: 1rem;
@@ -179,6 +177,7 @@ header {
     padding-left: 1.5rem;
     background-color: var(--secondary-light);
   }
+  
 
 
 /***********************************************************/
@@ -522,12 +521,18 @@ header {
     border-radius: 10px; /* Adjust border radius */
     padding: 1rem; /* Adjust padding */
   
-    backdrop-filter: blur(9px) saturate(118%);
-    -webkit-backdrop-filter: blur(9px) saturate(118%);
-    background-color: rgba(48, 63, 80, 0.15);
+    backdrop-filter: blur(7px) saturate(29%);
+    -webkit-backdrop-filter: blur(7px) saturate(29%);
+    background-color: rgba(253, 253, 255, 0.81);
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.125);
+    border: 1px solid rgba(209, 213, 219, 0.3);
 }
+
+.searchresult .field .heading h1 a{
+  color:#000
+}
+
+
 /**rules for novelpage********************************/
 .novel_container {
   
@@ -558,6 +563,81 @@ header {
 .novel-info h1 {
   font-size: 24px;
   margin: 0;
+}
+
+.novel-info .bookmarkBtn {
+  width: 100px;
+  height: 40px;
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.349);
+  background-color: rgb(12, 12, 12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+}
+
+/* IconContainer hover effect (inactive state only) */
+.novel-info .bookmarkBtn:hover .IconContainer {
+  width: 90px;
+  transition-duration: 0.3s;
+}
+
+/* IconContainer hover effect persists in active state */
+.novel-info .bookmarkBtn.active .IconContainer {
+  width: 90px; /* Keeps hover width */
+  transition-duration: 0.3s;
+}
+
+/* Text hover effect (inactive state only) */
+.novel-info .bookmarkBtn:hover .text {
+  transform: translate(10px);
+  width: 0;
+  font-size: 0;
+  transition-duration: 0.3s;
+}
+
+/* Text hover effect persists in active state */
+.novel-info .bookmarkBtn.active .text {
+  transform: translate(10px); /* Keeps text shrink */
+  width: 0;
+  font-size: 0;
+  transition-duration: 0.3s;
+}
+
+/* Active state scaling */
+.novel-info .bookmarkBtn.active {
+  transform: scale(0.95); /* Adds subtle active scale */
+  transition-duration: 0.3s;
+}
+
+/* IconContainer default state */
+.novel-info .IconContainer {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(to bottom, rgb(255, 136, 255), rgb(172, 70, 255));
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+  transition-duration: 0.3s;
+}
+
+/* Text default state */
+.novel-info .text {
+  height: 100%;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 1;
+  transition-duration: 0.3s;
+  font-size: 1.04em;
 }
 
 .rating {
@@ -596,6 +676,9 @@ header {
 .chapter-list {
   margin-top: 20px;
 margin-left: 50px
+
+    
+  
 }
 
 .chapter-list h2 {
@@ -623,7 +706,20 @@ margin-left: 50px
 }
 
 /************Chapter_Content************/
+/*
 
+border-radius: 25px;
+backdrop-filter: blur(14.8px);
+padding: 2rem;
+box-shadow: 0 2px 10px rgb(0 0 0 / 10%), 0 10px 15px rgb(0 0 0 / 20%);
+box-sizing: border-box;
+background-image: linear-gradient(45deg, rgba(32,152,255,0.6), rgba(172,50,249,0.6));
+width: 100%;
+min-height: 70px;
+mix-blend-mode: hard-light;
+
+
+*/
 .content-wrap {
   margin: 0 auto;
   max-width: 1500px;
@@ -711,5 +807,34 @@ input[type="password"] {
 
 .editProfilecontainer input[type="submit"]:hover {
   background-color: #5f23c1;
+}
+
+
+
+
+.buttonBack {
+  
+  padding: 6px 14px; /* Reduce padding for a smaller button */
+  font-size: 14px; /* Smaller font size */
+  font-weight: 500; /* Keep text bold */
+  text-transform: uppercase; /* Capitalize text */
+  color: #ffffff; /* White text for contrast */
+  background-color: #762ef3; /* Button background color */
+  border: none; /* Remove border */
+  border-radius: 20px; /* Slightly smaller rounded edges */
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s; /* Smooth transitions */
+}
+
+.buttonBack:hover {
+  background-color: #5f23c1; /* Darken background on hover */
+  transform: translateY(-1px); /* Slight lift effect */
+  box-shadow: 0 5px 7px rgba(0, 0, 0, 0.2); /* Enhance shadow */
+}
+
+.buttonBack:active {
+  transform: translateY(0); /* Subtle pressed effect */
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2); /* Reduce shadow */
 }
 

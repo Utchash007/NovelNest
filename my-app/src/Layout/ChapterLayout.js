@@ -5,7 +5,7 @@ import {  useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
 import { decode } from "../decodeJWT";
 import { create_read } from "../Generic_API/Create_Read_history";
-
+import { getTime } from "../getTime";
 const ChapterLayout = () => {
     const isFetchedRef = useRef(false);
     const user_id=(decode(localStorage.getItem("active"))).user_id;
@@ -17,6 +17,7 @@ const ChapterLayout = () => {
     const [isUnauthorized, setIsUnauthorized] = useState(false); // Track redirection
     const currentISOTime = new Date().toISOString();
     
+
     
 
     useEffect(() => {
@@ -41,7 +42,7 @@ const ChapterLayout = () => {
 
         if (isFetchedRef.current) return;
         isFetchedRef.current = true;
-        create_read(currentISOTime ,user_id,novel_id,cpt_no);
+        create_read(getTime() ,user_id,novel_id,cpt_no);
         const url1 = `http://127.0.0.1:8000/api/chapter/contents/?novel_id=${novel_id}&cpt_no=${cpt_no}`;
         const url2 = `http://127.0.0.1:8000/api/novels/novel/?novel_id=${novel_id}`;
         const url3 = `http://127.0.0.1:8000/api/update_novel/read_count_update/?novel_id=${novel_id}`;

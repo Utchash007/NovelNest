@@ -52,7 +52,7 @@ const Novelpage=()=>{
     <NovelCpt 
         chapters={chapterdata}
     />
-    <button onClick={() => navigate(`/`)} className="buttonBack">Back</button>
+    
     </div>
     )
 }

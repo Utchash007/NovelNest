@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; 
+import { Link, useNavigate} from "react-router-dom"; 
 import ChapterLayout from "../Layout/ChapterLayout";
 const Novel_cpt=({chapters})=>{
-    
+    const navigate = useNavigate();
     return(
 <div>
         <div class="chapter-list">
@@ -17,6 +17,7 @@ const Novel_cpt=({chapters})=>{
                         </li>
                     ))}
     </ul>
+    <button onClick={() => navigate(`/`)} className="buttonBack">Back</button>
     </div>
 </div>
     )

@@ -11,20 +11,23 @@ const Novelpage=()=>{
     const {id}=useParams();
     const [chapterdata, setChapterData] = useState([])
     const [noveldata, setNovelData] = useState([])
+    const [authorData, setAuthorData] = useState([])
    useEffect(()=>{
         if(isFetchedRef.current)return;
         isFetchedRef.current=true;
         const url1="http://127.0.0.1:8000/api/novel-info/chapters?novel_id="+id;
         const url2="http://127.0.0.1:8000/api/novels/novel/?novel_id="+id;
-        
+        const url3="http://127.0.0.1:8000/api/authors/get_authors/?novel_id="+id;
        Promise.all( 
         [
             axios.get(url1),
-            axios.get(url2)
+            axios.get(url2),
+            axios.get(url3)
         ])
-        .then(([chapterDataResponse,novelDataResponse])=>{
+        .then(([chapterDataResponse,novelDataResponse,authorResponse])=>{
             setChapterData(chapterDataResponse.data.sort((a,b)=>a.cpt_no-b.cpt_no));
             setNovelData(novelDataResponse.data);
+            setAuthorData(authorResponse.data);
         })
         .catch((error)=>{
             
@@ -46,6 +49,7 @@ const Novelpage=()=>{
                     description={novel.intro}
                     status={novel.status}
                     rating={novel.rating}
+                    author ={authorData[0].author}
                     />
         ))}
         

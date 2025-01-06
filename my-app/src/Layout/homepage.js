@@ -191,46 +191,37 @@ if (loading) {
           </div>
 
           <div className="field">
-            <div className="heading">
-              <h1><a href="#">Continue Reading</a></h1>
-            </div>
-            <div className="container">
-              <div className="card__container">
-              {novelHistory.map((novel, index) => {
-    console.log(novel);
-    console.log("Rendering Card for Novel:");
-    console.log("novel_id:", novel[0]?.novel_id);
-    console.log("novel_name:", novel[0]?.novel_name);
-    console.log("novel_img_link:", novel[0]?.novel_img_link);
-    console.log("description:", novel[0]?.intro);
-    console.log("genres:", [
-        novel[0]?.action ? "#action" : "",
-        novel[0]?.adventure ? "#adventure" : "",
-        novel[0]?.isekai ? "#isekai" : "",
-        novel[0]?.fantasy ? "#fantasy" : "",
-        novel[0]?.slice_of_life ? "#slice_of_life" : "",
-    ].filter(Boolean));
-
-    return (
-        <Card
-            key={(novel[0]?.novel_id || "") + "-" + index} // Concatenate strings without backticks
+  <div className="heading">
+    <h1><a href="#">Continue Reading</a></h1>
+  </div>
+  <div className="container">
+    <div className="card__container">
+      {novelHistory.length > 0 ? (
+        novelHistory.map((novel, index) => (
+          <Card
+            key={(novel[0]?.novel_id || "") + "-" + index}
             id={novel[0]?.novel_id}
             image={novel[0]?.novel_img_link}
             title={novel[0]?.novel_name}
             description={novel[0]?.intro}
             genres={[
-                novel[0]?.action ? "#action" : "",
-                novel[0]?.adventure ? "#adventure" : "",
-                novel[0]?.isekai ? "#isekai" : "",
-                novel[0]?.fantasy ? "#fantasy" : "",
-                novel[0]?.slice_of_life ? "#slice_of_life" : "",
+              novel[0]?.action ? "#action" : "",
+              novel[0]?.adventure ? "#adventure" : "",
+              novel[0]?.isekai ? "#isekai" : "",
+              novel[0]?.fantasy ? "#fantasy" : "",
+              novel[0]?.slice_of_life ? "#slice_of_life" : "",
             ].filter(Boolean)}
-        />
-    );
-})}
-              </div>
-            </div>
-          </div>
+          />
+        ))
+      ) : (
+        <div className="placeholder-message">
+          <p>No books in your reading history yet! Explore novels and start reading to see them here.</p>
+        </div>
+      )}
+    </div>
+  </div>
+</div>
+
 
         </div>
       );

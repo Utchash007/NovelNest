@@ -838,3 +838,230 @@ input[type="password"] {
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2); /* Reduce shadow */
 }
 
+/**************Navbar********************/
+.navbar {
+  background-color: #000000 !important;/* Temporary background color for testing */
+  padding: 10px 40px !important; 
+}
+
+.navbar ul {
+  background-color:  #000000 !important; /* Temporary background color for testing */
+  list-style-type: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+.navbar ul li {
+  background-color: #000000 !important; /* Temporary background color for testing */
+  display: inline-block !important;
+  margin-right: 20px !important;
+}
+
+.navbar ul li:last-child {
+  margin-right: 0 !important;
+}
+
+.navbar ul li a {
+  text-decoration: none !important;
+  color: #fff !important;
+  padding: 10px 20px !important;
+  border-radius: 5px !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.navbar ul li a:hover,
+.navbar ul li a.active {
+  background-color: #b80193 !important;
+}
+
+.overlay {
+    position: fixed;
+    top: 153px; /* Adjust based on the height of your navbar */
+    left: 0;
+    width: 100%;
+    height: calc(100% - 60px); /* Adjust based on the height of your navbar */
+    background-color: rgba(0, 0, 0, 0.803);
+    z-index: 1000;
+    display: none;
+    opacity: 0;
+    transform: scale(1.05);
+    backdrop-filter: blur(5px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+
+.overlay.active {
+  display: block;
+  opacity: 1;
+  transform: scale(1);
+}
+
+body.lock-scroll {
+    overflow: hidden;
+}
+
+
+/* Hide the default checkbox */
+.checkmark_container input {
+  display: none;
+}
+
+.checkmark_container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.checkmark_container .checkmark {
+  margin-right: 10px;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 1.3em;
+  width: 1.3em;
+  background-color: rgb(255, 253, 253);
+  border-radius: 0.3em;
+  transition: all 0.25s;
+  --spread: 50px;
+}
+
+.checkmark_container input:checked ~ .checkmark {
+  background-color: #000000;
+  box-shadow: -10px -10px var(--spread) 0px rgb(17, 0, 248),
+    0 -10px var(--spread) 0px rgb(243, 11, 243),
+    10px -10px var(--spread) 0px rgb(253, 228, 0),
+    10px 0 var(--spread) 0px rgb(107, 255, 21),
+    10px 10px var(--spread) 0px rgb(76, 0, 255),
+    0 10px var(--spread) 0px rgb(255, 196, 0),
+    -10px 10px var(--spread) 0px rgb(90, 105, 240);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark_container .checkmark:after {
+  content: "";
+  position: absolute;
+  transform: rotate(0deg);
+  border: 0.1em solid rgba(0, 0, 0, 0.863);
+  left: 0;
+  top: 0;
+  width: 1.1em;
+  height: 1.1em;
+  border-radius: 0.25em;
+  transition: all 0.25s, border-width 0.1s;
+}
+
+/* Show the checkmark when checked */
+.checkmark_container input:checked ~ .checkmark:after {
+  left: 0.45em;
+  top: 0.25em;
+  width: 0.25em;
+  height: 0.5em;
+  border-color: rgba(238, 238, 238, 0) white white #fff0;
+  border-width: 0 0.15em 0.15em 0;
+  border-radius: 0em;
+  transform: rotate(45deg);
+}
+
+.overlayForm {
+  margin: 0 auto;
+  padding: 50px;
+  display: flex;
+  
+}
+
+.checkmark_container span{
+  color : rgb(255, 253, 253)
+}
+
+
+.overlayForm button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #3d405b;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 17px;
+  padding: 16px;
+  width: 130px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+ }
+ 
+.overlayForm button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+ }
+ 
+ .overlayForm button span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -15px;
+  transition: 0.5s;
+ }
+ 
+ .overlayForm button:hover span {
+  padding-right: 15px;
+ }
+ 
+ .overlayForm button:hover span:after {
+  opacity: 1;
+  right: 0;
+ }
+
+
+
+.dropdown{
+  margin-top: -50px;
+  height: 30px;
+  width: 30px;
+}
+
+.checkmark_textfield input{
+  background-color: #121111f6;
+  color: #ffffff;
+  height: 30px;
+  border-radius: 5px;
+
+}
+
+/* ...existing code... */
+
+.UserRating {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.UserRating span {
+  margin-right: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.UserRating input {
+  display: none;
+}
+
+.UserRating .star {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  transition: color 200ms;
+}
+
+/* ...existing code... */

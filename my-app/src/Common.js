@@ -12,23 +12,23 @@ export const getToken = async () => {
                 });  
 
                 if (response.status === 200) {
-                    return parsedToken.access; // Return the token if valid
+                    return true; // Return the token if valid
                 }
                 if(response.status === 401){
                     console.log("Authentication lost")
                     localStorage.removeItem("active");
-                    return null;
+                    return false;
                 }
             }
         } catch (e) {
           
            
             console.error("Error during authentication:", e);
-            return null;
+            return false;
             
         }
     }
     console.log("ending");
     localStorage.removeItem("active"); // Clear invalid token
-    return null; // Return null if not authenticated
+    return false; // Return null if not authenticated
 };

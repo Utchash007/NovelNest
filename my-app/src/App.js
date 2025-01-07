@@ -9,7 +9,9 @@ import SearchResultLayout from "./Layout/SearchResultLayout";
 import LoginSignup from "./LoginSignup/LoginSignup";
 import PrivateRouter from "./PrivateRouter";
 import "./styles.css";
-
+import Bookmark from "./Layout/Bookmark";
+import AllNovels from "./Layout/AllNovels";
+import AdvSearchResultLayout from "./Layout/AdvSearchResultLayout";
 import { getToken } from "./Common";
 
 const App = () => {
@@ -32,16 +34,35 @@ const App = () => {
 
         <Route element={<PrivateRouter />}>
           <Route path="/Novelpage/:id" element={<Novelpage />} />
+        </Route>
+
+        <Route element={<PrivateRouter />}>
           <Route
             path="/ChapterLayout/:novel_id/:cpt_no"
             element={<ChapterLayout />}
           />
+          </Route>
+
+          <Route element={<PrivateRouter />}> 
           <Route path="/EditProfileLayout" element={<EditProfileLayout />} />
           <Route
             path="/SearchResultLayout/:searchQuery"
             element={<SearchResultLayout />}
           />
         </Route>
+
+        <Route element={<PrivateRouter />}>
+          <Route path="/Bookmark" element={<Bookmark/>} />
+        </Route>
+
+        <Route element={<PrivateRouter />}>
+          <Route path="/AllNovels" element={<AllNovels/>} />
+        </Route>
+
+        <Route element={<PrivateRouter />}>
+          <Route path="/AdvSearchResultLayout/:action/:adventure/:isekai/:fantasy/:slice_of_life/:search" element={<AdvSearchResultLayout/>} />
+        </Route>
+
       </Routes>
     </Router>
   );

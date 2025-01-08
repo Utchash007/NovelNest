@@ -22,6 +22,7 @@ const AdvSearchResultLayout = () => {
 
     return (
         <div>
+          <div className="searchresult">
         <div className="field">
             <div className="heading">
               <h1><a href="#">Advanced Search Results</a></h1>
@@ -40,6 +41,7 @@ const AdvSearchResultLayout = () => {
                 ))}
               </div>
             </div>
+          </div>
           </div>
     </div>
     )

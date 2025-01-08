@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Card = ({ id, image, title, description, genres }) => {
-  console.log("Card id:", id);
+    console.log(id);
   return (
     <article className="card__article">
       <img src={image} alt="image" className="card__img" />
@@ -11,7 +11,7 @@ const Card = ({ id, image, title, description, genres }) => {
         <h2 className="card__title">{title}</h2>
         {/* Dynamically create the URL using `id` */}
         <Link to={`/Novelpage/${id}`} className="card__button">Read More</Link>
-
+       
       </div>
     </article>
   );

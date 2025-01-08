@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import { decode } from "../decodeJWT";
 import axios from "axios";
+
 const Header = () => {
   const [userData,setUserData]=useState([]);
   const user_id=(decode(localStorage.getItem("active"))).user_id;
@@ -32,7 +33,7 @@ const Header = () => {
     <div>
     <header>
       <Link to="/" className="logo">
-        <img src="./Assets/NovelNestLogo.png"></img>
+        <img src="./Assets/NovelNestLogo.png"/>
       </Link>
       <SearchBar />
       <ProfileDropdown />

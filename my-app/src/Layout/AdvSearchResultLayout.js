@@ -1,10 +1,11 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";   
 import Card from "../template/card";
 
 const AdvSearchResultLayout = () => {
+    const navigate = useNavigate();
     const {action,adventure, isekai,fantasy,slice_of_life,search} = useParams();
     console.log(search);
     const [advSearchResult,setadvSearchResult]=useState([]);
@@ -43,6 +44,9 @@ const AdvSearchResultLayout = () => {
             </div>
           </div>
           </div>
+        <div className="navbutton">
+        <button onClick={() => navigate(`/`)} className="buttonBack">Back</button>
+      </div>    
     </div>
     )
 }

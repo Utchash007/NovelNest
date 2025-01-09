@@ -94,7 +94,10 @@ const ChapterLayout = () => {
                         />
                     ))}
                 </article>
-                <button onClick={() => navigate(`/Novelpage/${novel_id}`)} className="buttonBack">Back</button> 
+                
+            </div>
+            <div className="navbutton">
+            <button onClick={() => navigate(`/Novelpage/${novel_id}`)} className="buttonBack">Back</button> 
             </div>
         </div>
     );

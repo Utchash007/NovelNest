@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate} from "react-router-dom";
 import Card from "../template/card";
 import axios from "axios";
 
 const SearchResultLayout=()=>{
+    const navigate = useNavigate();
     const [searchNovels, setSearchNovel]=useState([]);
     const {searchQuery}=useParams();
     useEffect(()=>{
@@ -52,7 +53,9 @@ const SearchResultLayout=()=>{
             </div>
         </div>
         </div>
-
+        <div className="navbutton">
+            <button onClick={() => navigate(`/`)} className="buttonBack">Back</button>
+        </div>
         </div>
     )
 }

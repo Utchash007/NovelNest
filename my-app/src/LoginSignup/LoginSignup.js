@@ -45,7 +45,7 @@ const LoginSignup = ({ onLoginSuccess }) => {
     <div>
         <div className="loginWrap">
       <div className="img">
-        <img src="NN.png" width="150" height="80" alt="Logo" />
+        <img src="/Assets/logo.png" width="150" height="80" alt="Logo" />
       </div>
       <div className={`container ${isActive ? "active" : ""}`} id="container">
         <div className="form-container sign-up">

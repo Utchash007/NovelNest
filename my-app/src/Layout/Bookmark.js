@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import Card from "../template/card";
 import axios from "axios";
 import { decode } from "../decodeJWT";
+import { useNavigate } from "react-router-dom";
 const Bookmark=()=>{
-    
+        const navigate = useNavigate();
       const user_id=(decode(localStorage.getItem("active"))).user_id;
         //console.log(user_id);
 
@@ -53,7 +54,7 @@ const Bookmark=()=>{
         <div>
             <div className="field">
             <div className="heading">
-              <h1><a href="#">Action</a></h1>
+              <h1><a href="#">Bookmarks</a></h1>
             </div>
             <div className="container">
               <div className="card__container">
@@ -92,6 +93,9 @@ const Bookmark=()=>{
               </div>
             </div>
           </div>
+            <div className="navbutton">
+                <button onClick={() => navigate(`/`)} className="buttonBack">Back</button>
+            </div>
         </div>
      )   
 }

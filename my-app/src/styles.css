@@ -809,13 +809,20 @@ input[type="password"] {
   background-color: #5f23c1;
 }
 
-
+.navbutton{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 
 .buttonBack {
   
   padding: 6px 14px; /* Reduce padding for a smaller button */
-  font-size: 14px; /* Smaller font size */
+  font-size: 20px; /* Smaller font size */
   font-weight: 500; /* Keep text bold */
   text-transform: uppercase; /* Capitalize text */
   color: #ffffff; /* White text for contrast */

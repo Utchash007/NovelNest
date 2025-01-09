@@ -17,7 +17,6 @@ const Novel_cpt=({chapters})=>{
                         </li>
                     ))}
     </ul>
-    <button onClick={() => navigate(`/`)} className="buttonBack">Back</button>
     </div>
 </div>
     )

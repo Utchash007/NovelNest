@@ -1,9 +1,11 @@
 import axios from "axios";
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState,useEffect, } from "react";
 import Card from "../template/card";
+import {  useNavigate } from 'react-router-dom';
 
 const AllNovels=()=>{
+    const navigate = useNavigate();
     const [allNovels,setallNovels]=useState([]);
     useEffect(()=>{
         const url="http://127.0.0.1:8000/api/novels/";
@@ -37,6 +39,10 @@ return (
               </div>
             </div>
           </div>
+
+      <div className="navbutton">
+        <button onClick={() => navigate(`/`)} className="buttonBack">Back</button>
+      </div>
     </div>
 )
 }

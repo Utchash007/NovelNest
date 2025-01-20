@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import baseUrl from "./URLs";
 export const getToken = async () => {
     const storedData = localStorage.getItem("active");
     console.log("Token");
@@ -7,7 +7,7 @@ export const getToken = async () => {
         try {
             const parsedToken = JSON.parse(storedData);
             if (parsedToken.access) {
-                const response = await axios.post("http://127.0.0.1:8000/api/token/verify/", {
+                const response = await axios.post(baseUrl()+"/api/token/verify/", {
                     token: parsedToken.access,
                 });  
 
@@ -21,8 +21,6 @@ export const getToken = async () => {
                 }
             }
         } catch (e) {
-          
-           
             console.error("Error during authentication:", e);
             return false;
             

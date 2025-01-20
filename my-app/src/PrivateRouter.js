@@ -15,12 +15,24 @@ const PrivateRouter = () => {
         };
 
         checkAuth();
-    }, [[location]]);
+    }, [location]);
 
     if (isAuthenticated === null) {
-        return <div>Loading...</div>; // Show loading screen while checking authentication
+        return  (
+          <div class="spinner-box">
+            <div class="circle-border">
+              <div class="circle-core"></div>
+            </div>  
+          </div>
+          ); // Show loading screen while checking authentication
     }
 
+    if (isAuthenticated === false) {
+      console.log("Authentication failed. Refreshing...");
+      window.location.reload(); // Perform a hard refresh
+  }
+
+  
     return isAuthenticated ? <Outlet /> : <Navigate to="/LoginSignup" replace />;
 };
 

@@ -820,7 +820,8 @@ input[type="password"] {
 
 
 .buttonBack {
-  
+  margin-left: 5px;
+  margin-right: 5px;
   padding: 6px 14px; /* Reduce padding for a smaller button */
   font-size: 20px; /* Smaller font size */
   font-weight: 500; /* Keep text bold */

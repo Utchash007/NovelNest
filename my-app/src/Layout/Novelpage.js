@@ -2,7 +2,7 @@ import React, { useEffect, useState,useRef} from "react";
 import NovelDescription from '../template/NovelDescription';
 import NovelCpt from '../template/NovelCpt';
 import axios from "axios";
-import { useParams,useNavigate } from "react-router-dom";  // Make sure this is correct
+import { Link,useParams,useNavigate } from "react-router-dom";  // Make sure this is correct
 
 
 const Novelpage=()=>{
@@ -56,6 +56,10 @@ const Novelpage=()=>{
     <NovelCpt 
         chapters={chapterdata}
     />
+    
+    <div className="navbutton">
+        <button onClick={() => navigate(`/`)} className="buttonBack">Back</button>
+    </div>
     
     </div>
     )

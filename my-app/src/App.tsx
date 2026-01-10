@@ -16,22 +16,21 @@ import { getToken } from "./Common";
 import ProfileDropdown from "./Header_Components/ProfileDropdown";
 
 const App = () => {
-
-  const isAuthenticated = getToken();
+  // NOTE: Keeping behavior identical to the existing App.js.
+  // getToken() is async in this codebase; App.js currently uses it sync.
+  const isAuthenticated = (getToken() as unknown) as boolean;
 
   return (
     <Router>
       {isAuthenticated && <Header />}
       <Routes>
-        
         {/* Public Routes */}
-        <Route path="/LoginSignup" element={<LoginSignup />} />
-        
+        <Route path="/LoginSignup" element={<LoginSignup onLoginSuccess={() => window.location.reload()} />} />
+
         {/* Private Routes */}
         <Route element={<PrivateRouter />}>
           <Route path="/" element={<Homepage />} />
         </Route>
-
 
         <Route element={<PrivateRouter />}>
           <Route path="/Novelpage/:id" element={<Novelpage />} />
@@ -42,9 +41,9 @@ const App = () => {
             path="/ChapterLayout/:novel_id/:cpt_no"
             element={<ChapterLayout />}
           />
-          </Route>
+        </Route>
 
-          <Route element={<PrivateRouter />}> 
+        <Route element={<PrivateRouter />}>
           <Route path="/EditProfileLayout" element={<EditProfileLayout />} />
           <Route
             path="/SearchResultLayout/:searchQuery"
@@ -53,21 +52,23 @@ const App = () => {
         </Route>
 
         <Route element={<PrivateRouter />}>
-          <Route path="/Bookmark" element={<Bookmark/>} />
+          <Route path="/Bookmark" element={<Bookmark />} />
         </Route>
 
         <Route element={<PrivateRouter />}>
-          <Route path="/AllNovels" element={<AllNovels/>} />
+          <Route path="/AllNovels" element={<AllNovels />} />
         </Route>
 
         <Route element={<PrivateRouter />}>
-          <Route path="/AdvSearchResultLayout/:action/:adventure/:isekai/:fantasy/:slice_of_life/:search" element={<AdvSearchResultLayout/>} />
+          <Route
+            path="/AdvSearchResultLayout/:action/:adventure/:isekai/:fantasy/:slice_of_life/:search"
+            element={<AdvSearchResultLayout />}
+          />
         </Route>
 
         <Route element={<PrivateRouter />}>
-          <Route element={<ProfileDropdown/>} />
+          <Route element={<ProfileDropdown />} />
         </Route>
-        
       </Routes>
     </Router>
   );

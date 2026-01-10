@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./loginstyle.css";
 import axios from "axios";
-const LoginSignup = ({ onLoginSuccess }) => {
+const LoginSignup = ({ onLoginSuccess = () => window.location.reload() }) => {
   const [isActive, setIsActive] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

@@ -13,6 +13,7 @@ import Bookmark from "./Layout/Bookmark";
 import AllNovels from "./Layout/AllNovels";
 import AdvSearchResultLayout from "./Layout/AdvSearchResultLayout";
 import { getToken } from "./Common";
+import ProfileDropdown from "./Header_Components/ProfileDropdown";
 
 const App = () => {
 
@@ -63,6 +64,10 @@ const App = () => {
           <Route path="/AdvSearchResultLayout/:action/:adventure/:isekai/:fantasy/:slice_of_life/:search" element={<AdvSearchResultLayout/>} />
         </Route>
 
+        <Route element={<PrivateRouter />}>
+          <Route element={<ProfileDropdown/>} />
+        </Route>
+        
       </Routes>
     </Router>
   );

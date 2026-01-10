@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import { decode } from "../decodeJWT";
 
@@ -18,11 +18,16 @@ const ProfileDropdown = () => {
       setTimer(timeoutId);
     }
   };
-  
+  const navigate = useNavigate();
   const [userData, setUserData] = useState([]);
+  const user_obj=localStorage.getItem("active");
+if(user_obj==null){
+  window.location.reload();
+  navigate("/LoginSignup");
+  window.location.reload();
+}
   const user_id = decode(localStorage.getItem("active")).user_id;
   const user_name = localStorage.getItem("username");
-
   useEffect(() => {
     const url1 = `http://127.0.0.1:8000/api/users/get_user/?id=${user_id}`;
 

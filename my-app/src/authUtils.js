@@ -6,6 +6,7 @@ export const isAuthenticated = async () => {
     if (storedData) {
         try {
             const parsedToken = JSON.parse(storedData);
+            
             if (parsedToken.access) {
                 const response = await axios.post("http://127.0.0.1:8000/api/token/verify/", {
                     token: parsedToken.access

@@ -6,7 +6,7 @@
 [![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)](https://axios-http.com/)
 [![Appwrite](https://img.shields.io/badge/Appwrite-FD366E?style=for-the-badge&logo=appwrite&logoColor=white)](https://appwrite.io/)
 
-A responsive, feature-rich web application frontend for the **NovelNest novel-reading platform**. This frontend is built with **React 19 + TypeScript + Vite**, uses **Axios** with JWT interceptors to communicate with the Express backend, and leverages the **Appwrite Web SDK** for secure, client-side session authentication.
+A responsive, feature-rich web application frontend for the **NovelNest novel-reading platform**. This frontend is built with **React 19 + TypeScript + Vite**, uses **Axios** with JWT interceptors to communicate with the [Express Backend Server](https://github.com/Utchash007/NovelNEstBackendJSTS), and leverages the **Appwrite Web SDK** for secure, client-side session authentication.
 
 ---
 

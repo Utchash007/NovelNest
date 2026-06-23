@@ -1,6 +1,5 @@
+export const BASE_URL = import.meta.env.VITE_API_URL || "";
 
-const baseUrl=()=>{
-    const base_url="http://127.0.0.1:8000/";
-    return base_url;
-}
+// Backward-compat for existing callers that use baseUrl()
+const baseUrl = () => BASE_URL + "/";
 export default baseUrl;

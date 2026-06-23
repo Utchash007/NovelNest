@@ -1,76 +1,56 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./Header_Components/heder";
-import Homepage from "./Layout/homepage";
-import Novelpage from "./Layout/Novelpage";
-import ChapterLayout from "./Layout/ChapterLayout";
-import EditProfileLayout from "./Layout/EditProfileLayout";
-import SearchResultLayout from "./Layout/SearchResultLayout";
-import LoginSignup from "./LoginSignup/LoginSignup";
-import PrivateRouter from "./PrivateRouter";
+import React, { Suspense, lazy } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
 import "./styles.css";
-import Bookmark from "./Layout/Bookmark";
-import AllNovels from "./Layout/AllNovels";
-import AdvSearchResultLayout from "./Layout/AdvSearchResultLayout";
-import { getToken } from "./Common";
-import ProfileDropdown from "./Header_Components/ProfileDropdown";
+import Header from "./Header_Components/Header";
+import LoginSignup from "./LoginSignup/LoginSignup";
+import { useAuth } from "./AuthContext";
 
-const App = () => {
-  // NOTE: Keeping behavior identical to the existing App.js.
-  // getToken() is async in this codebase; App.js currently uses it sync.
-  const isAuthenticated = (getToken() as unknown) as boolean;
+// Lazy-loaded route components — each route is its own chunk
+const Homepage = lazy(() => import("./Layout/homepage"));
+const Novelpage = lazy(() => import("./Layout/Novelpage"));
+const ChapterLayout = lazy(() => import("./Layout/ChapterLayout"));
+const EditProfileLayout = lazy(() => import("./Layout/EditProfileLayout"));
+const SearchResultLayout = lazy(() => import("./Layout/SearchResultLayout"));
+const AllNovels = lazy(() => import("./Layout/AllNovels"));
+const AdvSearchResultLayout = lazy(() => import("./Layout/AdvSearchResultLayout"));
+const Bookmark = lazy(() => import("./Layout/Bookmark"));
+const NotFound = lazy(() => import("./Layout/NotFound"));
+const ProtectedRoute = lazy(() => import("./PrivateRouter"));
+
+const LoadingFallback = () => (
+  <div className="spinner-box">
+    <div className="circle-border">
+      <div className="circle-core"></div>
+    </div>
+  </div>
+);
+
+const App: React.FC = () => {
+  const { isAuthenticated, isLoading } = useAuth();
+
+  if (isLoading) return <LoadingFallback />;
 
   return (
-    <Router>
-      {isAuthenticated && <Header />}
-      <Routes>
-        {/* Public Routes */}
-        <Route path="/LoginSignup" element={<LoginSignup onLoginSuccess={() => window.location.reload()} />} />
-
-        {/* Private Routes */}
-        <Route element={<PrivateRouter />}>
-          <Route path="/" element={<Homepage />} />
-        </Route>
-
-        <Route element={<PrivateRouter />}>
-          <Route path="/Novelpage/:id" element={<Novelpage />} />
-        </Route>
-
-        <Route element={<PrivateRouter />}>
-          <Route
-            path="/ChapterLayout/:novel_id/:cpt_no"
-            element={<ChapterLayout />}
-          />
-        </Route>
-
-        <Route element={<PrivateRouter />}>
-          <Route path="/EditProfileLayout" element={<EditProfileLayout />} />
-          <Route
-            path="/SearchResultLayout/:searchQuery"
-            element={<SearchResultLayout />}
-          />
-        </Route>
-
-        <Route element={<PrivateRouter />}>
-          <Route path="/Bookmark" element={<Bookmark />} />
-        </Route>
-
-        <Route element={<PrivateRouter />}>
-          <Route path="/AllNovels" element={<AllNovels />} />
-        </Route>
-
-        <Route element={<PrivateRouter />}>
-          <Route
-            path="/AdvSearchResultLayout/:action/:adventure/:isekai/:fantasy/:slice_of_life/:search"
-            element={<AdvSearchResultLayout />}
-          />
-        </Route>
-
-        <Route element={<PrivateRouter />}>
-          <Route element={<ProfileDropdown />} />
-        </Route>
-      </Routes>
-    </Router>
+    <BrowserRouter>
+      {isAuthenticated ? <Header /> : null}
+      <Suspense fallback={<LoadingFallback />}>
+        <Routes>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/novel/:id" element={<Novelpage />} />
+            <Route path="/novel/:novel_id/chapter/:cpt_no" element={<ChapterLayout />} />
+            <Route path="/profile/edit" element={<EditProfileLayout />} />
+            <Route path="/search/:searchQuery" element={<SearchResultLayout />} />
+            <Route path="/novels" element={<AllNovels />} />
+            <Route path="/search/advanced" element={<AdvSearchResultLayout />} />
+            <Route path="/bookmarks" element={<Bookmark />} />
+          </Route>
+          <Route path="/login" element={<LoginSignup />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
   );
 };
 
